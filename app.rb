@@ -17,6 +17,35 @@ helpers do
   end
 end
 
+get '/sign_in' do
+  erb :sign_in
+end
+
+post '/sign_in' do
+  user=User.find_by(email:params[:email])
+   if user&&user.authenticate(params[:password])
+    session[:user]=user.id
+    redirect '/'
+  else
+    redirect '/sign_in'
+  end
+end
+
+get '/sign_up' do
+  erb :sign_up
+end
+
+post '/sign_up' do
+  user=User.create(
+  name:params[:name],
+  email:params[:email],
+  password:params[:password],
+  )
+
+  session[:user]=user.id
+  #部活選択画面にリダイレクト
+end
+
 get '/' do
   erb :index
 end
