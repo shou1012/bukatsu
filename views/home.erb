@@ -11,3 +11,7 @@
 <%UserCommunity.all.belonging(current_user).each do |user_community|%>
 <p><%=Community.find_by(id: user_community.community_id).name%></p>
 <%end%>
+<h1>参加チーム</h1>
+<%UserTeam.all.belonging(current_user).each do |user_team|%>
+<a href="/team/<%=user_team.team_id%>">チーム:<%=Team.find_by(id: user_team.team_id).name%></a>
+<%end%>
