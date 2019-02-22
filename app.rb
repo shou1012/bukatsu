@@ -163,6 +163,13 @@ get '/team/:id' do
   end
 end
 
+post '/team/:id' do
+  team=Team.find_by(id:params[:id])
+  team.name=params[:name]
+  team.save
+  redirect "/team/#{params[:id]}"
+end
+
 get '/websocket' do
   if request.websocket?
     request.websocket do |ws|

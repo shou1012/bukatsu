@@ -15,6 +15,10 @@
 <%end%>
 
 <h1><%=team.name.presence||"チーム"%>のチャット</h1>
+<form action="/team/<%=team.id%>" method="POST">
+  <input type="text" name="name" placeholder="チーム名を入力" value=<%=team.name%>>
+	<input type="submit" value="更新">
+</form>
 <form id="form">
    <input type="text" id="send-msg">
    <input type="submit">
