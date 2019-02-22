@@ -16,6 +16,9 @@ gem 'rake'
 gem 'sinatra-activerecord'
 gem 'bcrypt','3.1.11'
 
+gem 'cloudinary'
+gem 'dotenv'
+
 group :development do
   gem 'sqlite3', '~> 1.3.6'
 end

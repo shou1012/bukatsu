@@ -3,6 +3,13 @@ Bundler.require
 require 'sinatra/reloader' if development?
 require 'sinatra-websocket'
 
+Dotenv.load
+Cloudinary.config do |config|
+    config.cloud_name = ENV['CLOUD_NAME']
+    config.api_key = ENV['CLOUDINARY_API_KEY']
+    config.api_secret = ENV['CLOUDINARY_API_SECRET']
+end
+
 set :server, 'thin'
 set :sockets, []
 
@@ -36,14 +43,26 @@ get '/sign_up' do
 end
 
 post '/sign_up' do
+  if !params[:profile_url].nil?
+    @tempfile = params[:profile_url][:tempfile]
+    uploads ={}
+    uploads[:fish] = Cloudinary::Uploader.upload(@tempfile.path)
+    @url = uploads[:fish]['url']
+  end
   user=User.create(
   name:params[:name],
+  profile_url:@url,
   email:params[:email],
   password:params[:password],
   )
 
   session[:user]=user.id
   redirect '/community'
+end
+
+get '/sign_out' do
+ session[:user]=nil
+ redirect '/sign_in'
 end
 
 get '/community' do
@@ -67,6 +86,44 @@ post '/community' do
       end
     end
     redirect '/'
+  end
+end
+
+get '/home' do
+  if current_user.nil?
+    redirect '/sign_in'
+  else
+    erb :home
+  end
+end
+
+post '/home' do#プロフィールの一言の更新
+  user=User.find_by(id:session[:user])
+  user.profile=params[:profile]
+  user.save
+  redirect '/home'
+end
+
+get '/edit' do
+  erb :edit
+end
+
+post '/edit' do
+  if !current_user.nil?
+    user=User.find_by(id:session[:user])
+    user.name=params[:name]
+    user.email=params[:email]
+    if !params[:profile_url].nil?
+      @tempfile = params[:profile_url][:tempfile]
+      uploads ={}
+      uploads[:fish] = Cloudinary::Uploader.upload(@tempfile.path)
+      @url = uploads[:fish]['url']
+      user.profile_url=@url
+    end
+    user.save
+    redirect '/home'
+  else
+    redirect '/sign_in'
   end
 end
 

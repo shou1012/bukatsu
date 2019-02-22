@@ -3,9 +3,17 @@
 <head>
   <title>ブカツ！</title>
   <meta charset="UTF-8">
-  <script src="/chat.js" type="text/javascript"></script>
+   <script src="/chat.js" type="text/javascript"></script>
 </head>
 <body>
+<nav>
+  	<a href="/">ブカツ!</a>
+    <%if !current_user.nil?%>
+      <a href="/home"><img src="<%=current_user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40></a>
+      <a href="/edit">edit</a>
+      <a href="/sign_out">logout</a>
+    <%end%>
+  </nav>
   <%=yield%>
 </body>
 </html>
