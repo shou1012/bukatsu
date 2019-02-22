@@ -1,15 +1,29 @@
 require 'bundler/setup'
 Bundler.require
 require 'sinatra/reloader' if development?
-require 'net/http'#httpリクエストをするためのライブラリ
-require 'uri'#uriを扱うためのライブラリ
+require 'sinatra-websocket'
+
+set :server, 'thin'
+set :sockets, []
 
 get '/' do
-  base_url='http://wikipedia.simpleapi.net/api?output=html&keyword='
-  if params[:keyword]
-    keyword=URI.escape(params[:keyword])
-    url=URI.parse(base_url+keyword)
-    @result=Net::HTTP.get(url).force_encoding("utf-8")
+  erb :index
+end
+
+get '/websocket' do
+  if request.websocket?
+    request.websocket do |ws|
+      ws.onopen do
+        settings.sockets << ws
+      end
+      ws.onmessage do |msg|
+        settings.sockets.each do |s|
+          s.send(msg)
+        end
+      end
+      ws.onclose do
+        settings.sockets.delete(ws)
+      end
+    end
   end
-  erb:index
 end
