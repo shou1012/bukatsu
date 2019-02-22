@@ -19,4 +19,5 @@ end
 class UserCommunity < ActiveRecord::Base#中間テーブル
   belongs_to :user
   belongs_to :community
+  scope :belonging, -> (user){where(user_id: user.id)}
 end

@@ -1,5 +1,6 @@
 <h1>新規登録</h1>
-<form action="/sign_up" method="POST">
+<form action="/sign_up" method="POST" enctype="multipart/form-data">
+	<input type="file" name="profile_url"><br>
 	<input type="text" name="name" placeholder="ユーザー名"><br>
   <input type="email" name="email" placeholder="メールアドレス"><br>
 	<input type="password" name="password" placeholder="パスワード"><br>
