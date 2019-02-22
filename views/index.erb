@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<title>wiki</title>
+	<style>
+	body{
+		font-family:"游ゴシック","Yu Gothic",YuGothic,sans-serif;
+		background-color:blue;
+	}
+
+	input#submit_button {
+    width: 150px;
+    height: 50px;
+	}
+
+
+	</style>
+</head>
+<body>
+<form action="/" method="get">
+	<input type="text" name="keyword">
+	<input id="submit_button" type="submit" value="検索">
+</form>
+<%if @result.empty?%>
+<p>結果がありません</p>
+<%else%>
+<%=@result%>
+<%end%>
+</body>
+</html>
