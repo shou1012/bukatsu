@@ -43,7 +43,31 @@ post '/sign_up' do
   )
 
   session[:user]=user.id
-  #部活選択画面にリダイレクト
+  redirect '/community'
+end
+
+get '/community' do
+   if current_user.nil?
+    redirect '/sign_in'
+   end
+  erb :community
+end
+
+post '/community' do
+  if current_user.nil?
+    redirect '/sign_in'
+  else
+    Community.all.each do |community|
+      sym="community#{community.id}".to_sym
+      if !params[sym].nil?
+      UserCommunity.create(
+        user_id:current_user.id,
+        community_id:community.id
+        )
+      end
+    end
+    redirect '/'
+  end
 end
 
 get '/' do
