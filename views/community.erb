@@ -1,0 +1,6 @@
+<form action="/community" method="post">
+  <%Community.all.each do |community|%>
+    <p><input type="checkbox" name=<%="community#{community.id}"%> value=<%=community.id%>><%=community.name%></p>
+  <%end%>
+  <input type="submit" value="入部"></input>
+</form>
