@@ -1,0 +1,22 @@
+<%team=Team.find_by(id:params[:id])%>
+
+<%UserTeam.members(team).each do |member|%>
+  <%user=User.find_by(id:member.user_id)%>
+   <p><img src="<%=user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40>
+   <%if user==current_user%>
+     あなた
+   <%else%>
+    <%=user.name%>
+   <%end%></p>
+  <p><%=user.profile%></p>
+  <%UserCommunity.belonging(user).each do |user_community|%>
+<p><%=Community.find_by(id: user_community.community_id).name%></p>
+<%end%>
+<%end%>
+
+<h1><%=team.name.presence||"チーム"%>のチャット</h1>
+<form id="form">
+   <input type="text" id="send-msg">
+   <input type="submit">
+ </form>
+ <ul id="msgs"></ul>

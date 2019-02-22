@@ -131,6 +131,38 @@ get '/' do
   erb :index
 end
 
+get '/make' do
+  if current_user.nil?
+      redirect '/sign_in'
+  end
+  max=User.count
+  teamNum=10#1チームの人数
+  @@members=(0..max).to_a.shuffle[0..(teamNum-2)]
+  erb :make
+end
+
+post '/make' do
+  team=Team.create()
+  @@members.each do |member|
+    if (user=User.find_by(id:member) and member!=current_user.id)
+      UserTeam.create(user_id:member,team_id:team.id)
+    end
+  end
+  UserTeam.create(user_id:current_user.id,team_id:team.id)
+  redirect "/team/#{team.id}"
+end
+
+get '/team/:id' do
+  if current_user.nil?
+    redirect '/sign_in'
+  end
+  if UserTeam.find_by(user_id:current_user.id,team_id:params[:id])
+    erb :team
+  else
+    redirect '/'
+  end
+end
+
 get '/websocket' do
   if request.websocket?
     request.websocket do |ws|

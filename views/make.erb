@@ -1,0 +1,17 @@
+<%@@members.each do |member|%>
+<div>
+<%if (user=User.find_by(id:member) and member!=current_user.id)%>
+  <p><img src="<%=user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40><%=user.name%></p>
+  <p><%=user.profile%></p>
+  <%UserCommunity.belonging(user).each do |user_community|%>
+<p><%=Community.find_by(id: user_community.community_id).name%></p>
+<%end%>
+</div>
+<%end%>
+<%end%>
+
+<form action="/make" method="POST">
+  <input type="submit" value="チーム作成">
+</form>
+
+<a href="/make">チーム再編成</a>
