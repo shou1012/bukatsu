@@ -25,7 +25,7 @@
 <%end%>
 
 <h1>作った作品</h1>
-<%UserTeam.all.belonging(current_user).each do |user_team|%>
+<%UserTeam.all.belonging(@user).each do |user_team|%>
 <%product=Product.find_by(team_id:user_team.team_id)%>
   <p><%=product.name%></p>
     <a href="/product/<%=product.id%>"><img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=100></a><br>
