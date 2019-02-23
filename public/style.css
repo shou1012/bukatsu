@@ -69,3 +69,108 @@ input{
 form{
   margin-bottom: 10vw;
 }
+
+.bukatsu_show{
+  text-align: center;
+}
+
+.bukatsu_show h1{
+  text-decoration: underline solid #f7cd60;
+  padding-bottom: 5vw;
+}
+
+.bukatsu_show form{
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.bukatsu_show p{
+    width: 10vw;
+    display: inline-block;
+    border: dotted 2px #f7cd60;
+    padding: 1vw 2vw 3vw 2vw;
+    margin: 3vw;
+}
+
+.bukatsu_show .submit{
+  display: block;
+  width: 30vw;
+  height: 5vw;
+  background-color: #fff;
+  border: solid 5px #f7cd60;
+  border-radius: 10px;
+  font-size: 2vw;
+  color: #f7cd60;
+  text-align: center;
+  margin: 5vw auto;
+}
+
+.main h1{
+  text-decoration: underline solid #f7cd60;
+  padding-bottom: 5vw;
+  text-align: center;
+}
+
+.main .product{
+      width: 15vw;
+    height: 20vw;
+    display: inline-block;
+    padding: 2vw;
+    border: dotted 2px #f7cd60;
+    margin: 3vw;
+}
+
+.main .products{
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.main .product_name{
+  font-size: 1.5vw;
+  text-align: center;
+  text-decoration: underline solid #f7cd60;
+}
+
+.main .team_name{
+  font-size: 0.6vw;
+  text-align: center;
+  padding-top: 1vw;
+  color: #d0d0d0;
+}
+
+.main .product_link{
+  display: block;
+  width: 10vw;
+  background-color: #fff;
+  border: solid 2px #f7cd60;
+  border-radius: 10px;
+  font-size: 1vw;
+  color: #f7cd60;
+  text-align: center;
+  margin: 1vw auto;
+  text-decoration: none;
+}
+
+.main img{
+      margin: 0 auto;
+    text-align: center;
+    display: block;
+}
+
+.main .like{
+
+}
+.main .make{
+  display: block;
+  width: 30vw;
+  height: 5vw;
+  background-color: #fff;
+  border: solid 5px #f7cd60;
+  border-radius: 10px;
+  font-size: 2vw;
+  color: #f7cd60;
+  text-align: center;
+  margin: 5vw auto;
+  text-decoration: none;
+  padding-top: 2vw;
+}

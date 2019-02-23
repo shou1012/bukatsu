@@ -1,6 +1,9 @@
+<div class="bukatsu_show">
+<h1>部活動紹介</h1>
 <form action="/community" method="post">
   <%Community.all.each do |community|%>
     <p><input type="checkbox" name=<%="community#{community.id}"%> value=<%=community.id%>><%=community.name%></p>
   <%end%>
-  <input type="submit" value="入部"></input>
+  <input class="submit" type="submit" value="入部"></input>
 </form>
+</div>

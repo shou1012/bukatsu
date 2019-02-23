@@ -1,15 +1,20 @@
+<div class="main">
+<h1>部活動報告</h1>
 <%if @products.size!=0%>
-<div>
+<div class="products">
   <%@products.each do |product|%>
-  <p><%=product.name%></p>
+  <div class="product">
+  <p class="product_name"><%=product.name%></p>
   <%team=Team.find_by(id:product.team_id)%>
-    <p><%=team.name%></p>
-    <a href="/product/<%=product.id%>"><img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=100></a><br>
+    <p class="team_name"><%=team.name%></p>
+    <a href="/product/<%=product.id%>"><img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=200></a><br>
     <p><%=product.likes%>likes</p>
-    <a href="<%=product.product_url%>">作品リンク</a>
+    <a class="product_link" href="<%=product.product_url%>">作品リンク</a>
+    </div>
     <%end%>
 </div>
 <%end%>
 <div>
-  <a href="/make">チーム作成</a>
+  <a class ="make" href="/make">チーム作成</a>
+</div>
 </div>
