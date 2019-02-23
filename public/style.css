@@ -174,3 +174,13 @@ form{
   text-decoration: none;
   padding-top: 2vw;
 }
+
+nav .head{
+  width: 100vw;
+  padding-top: 3vh;
+}
+
+nav{
+  background-color: #f7cd60;
+  height: 10vh;
+}

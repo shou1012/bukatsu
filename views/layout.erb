@@ -9,12 +9,7 @@
 </head>
 <body>
 <nav>
-  	<a href="/">ブカツ!</a>
-    <%if !current_user.nil?%>
-      <a href="/home"><img src="<%=current_user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40></a>
-      <a href="/edit">edit</a>
-      <a href="/sign_out">logout</a>
-    <%end%>
+  	<a href="/"><img class="head" src="img/head.png"></a>
   </nav>
   <%=yield%>
 </body>
