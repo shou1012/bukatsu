@@ -10,6 +10,7 @@ class User <ActiveRecord::Base
   validates :name, presence: true
   validates :email, presence: true, uniqueness:true ,format:{with:/[@]/}
   has_many :communities,through: :user_communities
+  has_many :teams,through: :user_teams
 end
 
 class Community <ActiveRecord::Base
@@ -20,4 +21,19 @@ class UserCommunity < ActiveRecord::Base#中間テーブル
   belongs_to :user
   belongs_to :community
   scope :belonging, -> (user){where(user_id: user.id)}
+end
+
+class Team <ActiveRecord::Base
+has_many :users,through: :user_teams
+end
+
+class UserTeam < ActiveRecord::Base#中間テーブル
+  belongs_to :user
+  belongs_to :team
+  scope :members, -> (team){where(team_id:team.id)}
+  scope :belonging, -> (user){where(user_id: user.id)}
+end
+
+class Product <ActiveRecord::Base
+   belongs_to :team
 end

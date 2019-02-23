@@ -1,0 +1,13 @@
+<%product=Product.find_by(id:params[:id])%>
+<p><%=product.name%></p>
+  <%team=Team.find_by(id:product.team_id)%>
+    <p><%=team.name%></p>
+    <img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=100><br>
+     <a href="<%=product.product_url%>">作品リンク</a>
+      <p><%=product.likes%>likes</p><form action="/product/<%=product.id%>" method="POST">
+    <input type="submit" value="いいね">
+    </form>
+   <%UserTeam.members(team).each do |member|%>
+   <%user=User.find_by(id:member.user_id)%>
+   <p><a href="/user/<%=user.id%>"><img src="<%=user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40></a><%=user.name%></p>
+    <%end%>

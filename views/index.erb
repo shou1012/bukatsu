@@ -1,5 +1,15 @@
-<form id="form">
-   <input type="text" id="send-msg">
-   <input type="submit">
- </form>
- <ul id="msgs"></ul>
+<%if @products.size!=0%>
+<div>
+  <%@products.each do |product|%>
+  <p><%=product.name%></p>
+  <%team=Team.find_by(id:product.team_id)%>
+    <p><%=team.name%></p>
+    <a href="/product/<%=product.id%>"><img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=100></a><br>
+    <p><%=product.likes%>likes</p>
+    <a href="<%=product.product_url%>">作品リンク</a>
+    <%end%>
+</div>
+<%end%>
+<div>
+  <a href="/make">チーム作成</a>
+</div>
