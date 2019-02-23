@@ -128,6 +128,9 @@ post '/edit' do
 end
 
 get '/' do
+  if current_user.nil?
+    redirect '/sign_in'
+  end
   @products=Product.order(created_at: :desc).limit(10)
   erb :index
 end
