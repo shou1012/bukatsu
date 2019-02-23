@@ -220,6 +220,14 @@ post '/product/:id' do
   redirect "/product/#{params[:id]}"
 end
 
+get '/user/:id' do
+  if current_user.nil?
+    redirect '/sign_in'
+  end
+  @user=User.find_by(id:params[:id])
+  erb:user
+end
+
 get '/websocket' do
   if request.websocket?
     request.websocket do |ws|

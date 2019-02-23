@@ -1,0 +1,34 @@
+<h1>学生証</h1>
+<p><%=@user.name%></p>
+<p><%=@user.profile%></p>
+
+
+<h1>所属ブカツ</h1>
+<%UserCommunity.all.belonging(@user).each do |user_community|%>
+<p><%=Community.find_by(id: user_community.community_id).name%></p>
+<%end%>
+
+<h1>参加中のチーム</h1>
+<%UserTeam.all.belonging(@user).each do |user_team|%>
+<%team=Team.find_by(id: user_team.team_id)%>
+<%if !team.finished%>
+  <a href="/team/<%=user_team.team_id%>">チーム:<%=team.name%></a>
+<%end%>
+<%end%>
+
+<h1>参加済のチーム</h1>
+<%UserTeam.all.belonging(@user).each do |user_team|%>
+<%team=Team.find_by(id: user_team.team_id)%>
+<%if team.finished%>
+  <p><%=team.name%></p>
+<%end%>
+<%end%>
+
+<h1>作った作品</h1>
+<%UserTeam.all.belonging(current_user).each do |user_team|%>
+<%product=Product.find_by(team_id:user_team.team_id)%>
+  <p><%=product.name%></p>
+    <a href="/product/<%=product.id%>"><img src="<%=product.thumbnail_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=200 height=100></a><br>
+    <p><%=product.likes%>likes</p>
+    <a href="<%=product.product_url%>">作品リンク</a>
+<%end%>
