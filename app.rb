@@ -154,7 +154,8 @@ post '/make' do
 end
 
 get '/team/:id' do
-  if Team.find_by(id:params[:id]).finished
+  team=Team.find_by(id:params[:id])
+  if team.finished
     redirect '/'
   end
 
