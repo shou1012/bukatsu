@@ -1,0 +1,71 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: 'TsukuARdGothic-Regular',sans-serif;
+}
+
+
+.top{
+  background-image: url("img/bg.png");
+  background-size: cover;
+  width: 100vw;
+  height: 180vh;
+  color: #444a54;
+}
+
+.top img{
+  margin: 0 auto;
+  width: 20vw;
+  height: auto;
+  display: block;
+  padding-top: 30vh;
+}
+
+.top h2{
+  color: #444a54;
+  text-align: center;
+  padding: 10vh;
+}
+.top p{
+  text-align: center;
+  line-height: 3em;
+}
+
+.sign_up{
+  text-align: center;
+  padding-top: 10vh;
+}
+
+.sign_up h1{
+  text-decoration: underline solid #f7cd60;
+  padding-bottom: 15vw;
+}
+
+.sign_up input{
+  width: 20vw;
+  height: 5vh;
+  border-radius: 10px;
+}
+
+.img_file input{
+  display: none;
+}
+
+.img_file{
+  width: 30vw;
+    background-image: url("img/top.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 30vw;
+    overflow: hidden;
+    padding: 8vw;
+    margin-bottom: 5vw;
+}
+
+input{
+  margin-top: 3vw;
+}
+
+form{
+  margin-bottom: 10vw;
+}

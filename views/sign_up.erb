@@ -1,9 +1,26 @@
-<h1>新規登録</h1>
-<form action="/sign_up" method="POST" enctype="multipart/form-data">
-	<input type="file" name="profile_url"><br>
-	<input type="text" name="name" placeholder="ユーザー名"><br>
-  <input type="email" name="email" placeholder="メールアドレス"><br>
-	<input type="password" name="password" placeholder="パスワード"><br>
-  <input type="password" name="password_confirmation" placeholder="パスワードの確認"><br>
-	<input type="submit" value="新規登録">
+<div class="top">
+	<img src="img/logo.png">
+	<h2>about</h2>
+	<p>
+		みなさん、青春してますか？<br>
+		ものづくりはしていますか?<br><br>
+
+		ここは女の子だけが自由にものづくりができる<br>
+		秘密の場所。<br><br>
+
+		さあ、<br>
+		女の子だけの世界で<br>
+		本当の自分を見つけよう！<br>
+		</p>
+</div>
+<div class="sign_up">
+	<h1>入学手続き</h1>
+	<form action="/sign_up" method="POST" enctype="multipart/form-data">
+		<label class="img_file"><input type="file" name="profile_url"><br></label>
+		<input type="text" name="name" placeholder="ユーザー名"><br>
+		<input type="email" name="email" placeholder="メールアドレス"><br>
+		<input type="password" name="password" placeholder="パスワード"><br>
+		<input type="password" name="password_confirmation" placeholder="パスワードの確認"><br>
+		<input type="submit" value="送信">
+	</div>
 </form>
