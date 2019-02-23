@@ -7,12 +7,12 @@
   </div>
   <input type="submit" value="更新">
 </form>
-<h1>所属ブカツ</h1>
+<h1>あなたの部活</h1>
 <%UserCommunity.all.belonging(current_user).each do |user_community|%>
 <p><%=Community.find_by(id: user_community.community_id).name%></p>
 <%end%>
 
-<h1>参加中のチーム</h1>
+<h1>参加中のクラス</h1>
 <%UserTeam.all.belonging(current_user).each do |user_team|%>
 <%team=Team.find_by(id: user_team.team_id)%>
 <%if !team.finished%>
@@ -20,7 +20,7 @@
 <%end%>
 <%end%>
 
-<h1>参加済のチーム</h1>
+<h1>参加済のクラス</h1>
 <%UserTeam.all.belonging(current_user).each do |user_team|%>
 <%team=Team.find_by(id: user_team.team_id)%>
 <%if team.finished%>

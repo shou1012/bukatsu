@@ -57,7 +57,11 @@ post '/sign_up' do
   )
 
   session[:user]=user.id
-  redirect '/community'
+  redirect '/enter'
+end
+
+get '/enter' do
+  erb :enter
 end
 
 get '/sign_out' do
