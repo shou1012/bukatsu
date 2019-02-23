@@ -33,3 +33,7 @@ class UserTeam < ActiveRecord::Base#中間テーブル
   scope :members, -> (team){where(team_id:team.id)}
   scope :belonging, -> (user){where(user_id: user.id)}
 end
+
+class Product <ActiveRecord::Base
+   belongs_to :team
+end

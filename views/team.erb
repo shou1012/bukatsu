@@ -1,5 +1,5 @@
 <%team=Team.find_by(id:params[:id])%>
-
+<a href="/release/<%=team.id%>">公開する</a>
 <%UserTeam.members(team).each do |member|%>
   <%user=User.find_by(id:member.user_id)%>
    <p><img src="<%=user.profile_url.presence||'https://3.bp.blogspot.com/-jtvaRX9n8OU/VaMOHGaVeRI/AAAAAAAAviQ/D9omX3FtbPw/s170/boy_05.png'%>" width=40 height=40>

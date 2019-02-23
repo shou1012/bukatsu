@@ -128,6 +128,7 @@ post '/edit' do
 end
 
 get '/' do
+  @products=Product.order(created_at: :desc).limit(10)
   erb :index
 end
 
@@ -153,9 +154,14 @@ post '/make' do
 end
 
 get '/team/:id' do
+  if Team.find_by(id:params[:id]).finished
+    redirect '/'
+  end
+
   if current_user.nil?
     redirect '/sign_in'
   end
+
   if UserTeam.find_by(user_id:current_user.id,team_id:params[:id])
     erb :team
   else
@@ -168,6 +174,49 @@ post '/team/:id' do
   team.name=params[:name]
   team.save
   redirect "/team/#{params[:id]}"
+end
+
+get '/release/:id' do
+  if current_user.nil?
+    redirect '/sign_in'
+  end
+  if UserTeam.find_by(user_id:current_user.id,team_id:params[:id])
+    erb :release
+  else
+    redirect '/'
+  end
+end
+
+post '/release/:id' do
+  team=Team.find_by(id:params[:id])
+  team.finished=true
+  team.save
+  if !params[:thumbnail_url].nil?
+      @tempfile = params[:thumbnail_url][:tempfile]
+      uploads ={}
+      uploads[:fish] = Cloudinary::Uploader.upload(@tempfile.path)
+      @url = uploads[:fish]['url']
+  end
+
+  Product.create(
+    name:params[:name],
+    thumbnail_url:@url,
+    product_url:params[:product_url],
+    team_id:params[:id],
+    likes: 0
+  )
+  redirect '/'
+end
+
+get '/product/:id' do
+  erb:product
+end
+
+post '/product/:id' do
+  product=Product.find_by(id:params[:id])
+  product.likes=product.likes+1
+  product.save
+  redirect "/product/#{params[:id]}"
 end
 
 get '/websocket' do

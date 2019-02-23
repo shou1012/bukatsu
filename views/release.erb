@@ -1,0 +1,9 @@
+<%team=Team.find_by(id:params[:id])%>
+<h1>チーム:<%=team.name%> リリースおめでとう</h1>
+<form action="/release/<%=team.id%>" method="POST" enctype="multipart/form-data">
+  <input type="text" name="name" placeholder="作品名"><br>
+  <input type="file" name="thumbnail_url"><br>
+  <input type="text" name="product_url" placeholder="作品URL"><br>
+	<input type="submit" value="公開">
+</form>
+<p>公開するとチームは解散し、チームページを閲覧できなくなります。</p>
